@@ -9,6 +9,8 @@ public class GameLogic implements PlayableLogic{
     private Disc[][] _board = new Disc[8][8];
     private final Stack<Disc[][]> _allMoves = new Stack<>();
     private Player _player1, _player2;
+    private int _player1discs, _player2discs;
+
     private Disc[][] getBoardCopy(Disc[][] board){
         Disc[][] ans = new Disc[board.length][board[0].length];
         for (int i = 0; i < board.length; i++) {
@@ -35,6 +37,16 @@ public class GameLogic implements PlayableLogic{
         Move move = new Move(p,disc,_board);
         List<Disc> willFlip = move.CountFlips();
         if(willFlip.isEmpty())return false;
+        Player currentplayer = get_currentPlayer();
+        int flips = willFlip.size();
+        if(currentplayer==_player1){
+            _player1discs=_player1discs+flips+1;
+            _player2discs=_player2discs-flips;
+        }
+        else{
+            _player2discs=_player2discs+flips+1;
+            _player1discs=_player1discs-flips;
+        }
         _board[p.getRow()][p.getColumn()]=disc;
         Player currentPlayer = get_currentPlayer();
         while (!willFlip.isEmpty()){
@@ -42,6 +54,7 @@ public class GameLogic implements PlayableLogic{
             willFlip.removeFirst();
         }
         _allMoves.add(copy);
+        System.out.println(" ");
         return true;
     }
     public boolean CheckLocateDisc(Position p, Disc disc){
@@ -120,7 +133,23 @@ public class GameLogic implements PlayableLogic{
 
     @Override
     public boolean isGameFinished() {
-        return this.ValidMoves().isEmpty();
+        if (!this.ValidMoves().isEmpty()){
+            return false;
+        }
+        else{
+            if(_player1discs > _player2discs){
+                _player1.addWin();
+                System.out.println("Player 1 wins with " +_player1discs + "! Player 2 had " +_player2discs + " discs.");
+            }
+            if(_player1discs < _player2discs){
+                _player2.addWin();
+                System.out.println("Player 2 wins with " +_player2discs + "! Player 1 had " +_player1discs + " discs.");
+            }
+            else{
+                System.out.println("Its a draw with " +_player2discs + " discs for each player:)");
+            }
+            return true;
+        }
     }
 
     @Override
@@ -134,6 +163,8 @@ public class GameLogic implements PlayableLogic{
         start[4][4] = disc44;
         start[4][3] = disc43;
         start[3][4] = disc34;
+        _player1discs=2;
+        _player2discs=2;
         _allMoves.clear();
         _board=start;
     }
@@ -142,6 +173,20 @@ public class GameLogic implements PlayableLogic{
     public void undoLastMove() {
         if(!_allMoves.isEmpty()){
             _board = _allMoves.pop();
+            _player1discs=0;
+            _player2discs=0;
+            for (int i = 0; i < this.getBoardSize(); i++){
+                for (int j = 0; j < this.getBoardSize(); j++){
+                    if(_board[i][j]!=null){
+                        if(_board[i][j].getOwner()==_player1){
+                            _player1discs=_player1discs+1;
+                        }
+                        else {
+                            _player2discs=_player2discs+1;
+                        }
+                    }
+                }
+            }
         }
     }
 
