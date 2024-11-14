@@ -145,7 +145,7 @@ public class GameLogic implements PlayableLogic{
                 _player2.addWin();
                 System.out.println("Player 2 wins with " +_player2discs + "! Player 1 had " +_player1discs + " discs.");
             }
-            else{
+            if(_player1discs == _player2discs){
                 System.out.println("Its a draw with " +_player2discs + " discs for each player:)");
             }
             return true;
