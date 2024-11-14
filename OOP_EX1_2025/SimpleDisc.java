@@ -1,3 +1,7 @@
+/**
+ * This class represent simple dice object
+ * Don't make any changes here
+ */
 public class SimpleDisc implements Disc{
 
     private Player _player;
