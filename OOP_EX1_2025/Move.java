@@ -23,7 +23,7 @@ public class Move {
     public List<Disc> CountFlips(){
         List<Disc> countFlips = new ArrayList<>();
         Player currentPlayer = _disc.getOwner();
-        if ((_position.getRow()<0||_position.getRow()>= this._board.length)||(_position.getColumn()<0||_position.getColumn()>= this._board[0].length)) return countFlips;
+        if ((_position.getRow()<0||_position.getRow()>= _board.length)||(_position.getColumn()<0||_position.getColumn()>= this._board[0].length)) return countFlips;
         if (_board[_position.getRow()][_position.getColumn()] != null) return countFlips;
         Disc[] neighbors = this.Neighbors(_position);
         for (int i = 0; i < 8; i++){
