@@ -3,17 +3,26 @@ import java.util.List;
 import java.util.Stack;
 
 public class GameLogic implements PlayableLogic{
-    private Board _board = new Board(8);
-    private final Stack<Board> _allMoves = new Stack<>();
+    private Disc[][] _board = new Disc[8][8];
+    private final Stack<Disc[][]> _allMoves = new Stack<>();
     private Player _player1, _player2;
+    private Disc[][] getBoardCopy(Disc[][] board){
+        Disc[][] ans = new Disc[board.length][board[0].length];
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                ans[i][j] = board[i][j];
+            }
+        }
+        return ans;
+    }
     @Override
     public boolean locate_disc(Position p, Disc disc) {
-        Board board = _board.getBoardCopy();
-        Board copy = _board.getBoardCopy();
+        Disc[][] board = this.getBoardCopy(_board);
+        Disc[][] copy = this.getBoardCopy(_board);
         Move move = new Move(p,disc,board);
         List<Disc> willFlip = move.CountFlips();
         if(willFlip.isEmpty())return false;
-        _board.setDisc(p,disc);
+        _board[p.getRow()][p.getColumn()]=disc;
         Player currentPlayer = get_currentPlayer();
         while (!willFlip.isEmpty()){
             willFlip.getFirst().setOwner(currentPlayer);
@@ -23,20 +32,19 @@ public class GameLogic implements PlayableLogic{
         return true;
     }
     public boolean CheckLocateDisc(Position p, Disc disc){
-        Board board = _board.getBoardCopy();
+        Disc[][] board = this.getBoardCopy(_board);
         Move move = new Move(p,disc,board);
         List<Disc> willFlip = move.CountFlips();
         return !willFlip.isEmpty();
     }
     @Override
     public Disc getDiscAtPosition(Position position) {
-        _board.getDisc(position);
-        return null;
+        return _board[position.getRow()][position.getColumn()];
     }
 
     @Override
     public int getBoardSize() {
-        return _board.boardSize();
+        return _board.length;
     }
 
     @Override
@@ -60,7 +68,7 @@ public class GameLogic implements PlayableLogic{
     public int countFlips(Position p) {
         Player currentPlayer = get_currentPlayer();
         Disc disc = new SimpleDisc(currentPlayer);
-        Board board = _board.getBoardCopy();
+        Disc[][] board = this.getBoardCopy(_board);
         Move move = new Move(p, disc,board);
         List<Disc> willFlip = move.CountFlips();
         return willFlip.size();
@@ -104,15 +112,15 @@ public class GameLogic implements PlayableLogic{
 
     @Override
     public void reset() {
-        Board start = new Board(8);
+        Disc[][] start = new Disc[8][8];
         Disc disc33 = new SimpleDisc(_player1);
         Disc disc44 = new SimpleDisc(_player1);
         Disc disc34 = new SimpleDisc(_player2);
         Disc disc43 = new SimpleDisc(_player2);
-        start.setDisc(3,3,disc33);
-        start.setDisc(4,4,disc44);
-        start.setDisc(3,4,disc34);
-        start.setDisc(4,3,disc43);
+        start[3][3] = disc33;
+        start[4][4] = disc44;
+        start[4][3] = disc43;
+        start[3][4] = disc34;
         _allMoves.clear();
         _board=start;
     }
@@ -123,4 +131,5 @@ public class GameLogic implements PlayableLogic{
             _board = _allMoves.pop();
         }
     }
+
 }
