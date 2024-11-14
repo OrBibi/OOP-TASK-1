@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c2c2d41-1969-46d7-80e8-6bc8568f292a" name="Changes" comment="Add files via upload">
-      <change beforePath="$PROJECT_DIR$/OOP_EX1_2025/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_EX1_2025/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOP_EX1_2025/Move.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_EX1_2025/Move.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OOP_EX1_2025/GameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_EX1_2025/GameLogic.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +81,7 @@
       <workItem from="1731577556135" duration="6000" />
       <workItem from="1731577581346" duration="38000" />
       <workItem from="1731578354478" duration="2068000" />
-      <workItem from="1731586761528" duration="2653000" />
+      <workItem from="1731586761528" duration="3439000" />
     </task>
     <task id="LOCAL-00001" summary="Add files via upload">
       <option name="closed" value="true" />
@@ -91,7 +91,31 @@
       <option name="project" value="LOCAL" />
       <updated>1731587355319</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add files via upload">
+      <option name="closed" value="true" />
+      <created>1731589433515</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1731589433515</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Add files via upload">
+      <option name="closed" value="true" />
+      <created>1731589473813</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1731589473813</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Add files via upload">
+      <option name="closed" value="true" />
+      <created>1731589500871</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1731589500871</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -10,16 +10,26 @@ public class GameLogic implements PlayableLogic{
         Disc[][] ans = new Disc[board.length][board[0].length];
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
-                ans[i][j] = board[i][j];
+                Disc temp = board[i][j];
+                if(temp!=null) {
+                    if(temp.getType().equals("⬤")){
+                        ans[i][j] = new SimpleDisc(temp.getOwner());
+                    }
+                    else if(temp.getType().equals("⭕")){
+                        ans[i][j] = new UnflippableDisc(temp.getOwner());
+                    }
+                    else{
+                        ans[i][j] = new BombDisc(temp.getOwner());
+                    }
+                }
             }
         }
         return ans;
     }
     @Override
     public boolean locate_disc(Position p, Disc disc) {
-        Disc[][] board = this.getBoardCopy(_board);
         Disc[][] copy = this.getBoardCopy(_board);
-        Move move = new Move(p,disc,board);
+        Move move = new Move(p,disc,_board);
         List<Disc> willFlip = move.CountFlips();
         if(willFlip.isEmpty())return false;
         _board[p.getRow()][p.getColumn()]=disc;
