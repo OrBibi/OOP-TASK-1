@@ -2,6 +2,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+/**
+ * nsrghrherheryheryh
+ */
 public class GameLogic implements PlayableLogic{
     private Disc[][] _board = new Disc[8][8];
     private final Stack<Disc[][]> _allMoves = new Stack<>();
