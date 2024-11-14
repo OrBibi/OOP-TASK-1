@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Stack;
 
 /**
- * nsrghrherheryheryh
+ * OrBibi
  */
 public class GameLogic implements PlayableLogic{
     private Disc[][] _board = new Disc[8][8];
