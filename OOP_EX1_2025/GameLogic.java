@@ -163,7 +163,7 @@ public class GameLogic implements PlayableLogic{
             if(_player1discs > _player2discs){
                 _player1.addWin();
                 System.out.println("Player 1 wins with " +_player1discs + "! Player 2 had " +_player2discs + " discs.");
-                System.out.println(" ");
+                System.out.println("  ");
             }
             if(_player1discs < _player2discs){
                 _player2.addWin();
