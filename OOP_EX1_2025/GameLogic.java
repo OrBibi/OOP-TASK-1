@@ -170,7 +170,7 @@ public class GameLogic implements PlayableLogic{
 
     @Override
     public void undoLastMove() {
-        if(!_allMoves.isEmpty()){
+        if(!_allMoves.isEmpty()&&_player1.isHuman()&&_player2.isHuman()){
             _board = _allMoves.pop();
             _player1discs=0;
             _player2discs=0;

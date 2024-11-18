@@ -2,13 +2,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Move {
-    private final Position _position;
-    private final Disc _disc;
+    private Position _position;
+    private Disc _disc;
 
 
     public Move(Position position, Disc disc){
         this._position=position;
         this._disc=disc;
+    }
+
+    public void set_disc(Disc _disc) {
+        this._disc = _disc;
+    }
+
+    public void set_position(Position _position) {
+        this._position = _position;
     }
 
     public Disc get_disc() {
