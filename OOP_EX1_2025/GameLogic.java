@@ -11,7 +11,7 @@ public class GameLogic implements PlayableLogic{
     private Player _player1, _player2;
     private int _player1discs, _player2discs;
 
-    private Disc[][] getBoardCopy(Disc[][] board){
+    public Disc[][] getBoardCopy(Disc[][] board){
         Disc[][] ans = new Disc[board.length][board[0].length];
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
@@ -37,9 +37,9 @@ public class GameLogic implements PlayableLogic{
         Move move = new Move(p,disc,_board);
         List<Disc> willFlip = move.CountFlips();
         if(willFlip.isEmpty())return false;
-        Player currentplayer = get_currentPlayer();
+        Player currentPlayer = get_currentPlayer();
         int flips = willFlip.size();
-        if(currentplayer==_player1){
+        if(currentPlayer==_player1){
             _player1discs=_player1discs+flips+1;
             _player2discs=_player2discs-flips;
         }
@@ -48,7 +48,6 @@ public class GameLogic implements PlayableLogic{
             _player1discs=_player1discs-flips;
         }
         _board[p.getRow()][p.getColumn()]=disc;
-        Player currentPlayer = get_currentPlayer();
         while (!willFlip.isEmpty()){
             willFlip.getFirst().setOwner(currentPlayer);
             willFlip.removeFirst();
@@ -188,6 +187,9 @@ public class GameLogic implements PlayableLogic{
                 }
             }
         }
+    }
+    public Disc[][] get_board() {
+        return _board;
     }
 
 }
