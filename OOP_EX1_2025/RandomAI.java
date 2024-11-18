@@ -24,7 +24,6 @@ public class RandomAI extends AIPlayer{
         else {
             disc = new SimpleDisc(this);
         }
-        Move move = new Move(position,disc);
-        return move;
+        return new Move(position,disc);
     }
 }
