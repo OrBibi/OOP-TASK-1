@@ -42,15 +42,39 @@ public class GameLogic implements PlayableLogic{
         if(currentPlayer==_player1){
             _player1discs=_player1discs+flips+1;
             _player2discs=_player2discs-flips;
+            System.out.println("Player 1 placed a "+disc.getType()+" in ("+p.getRow()+","+p.getColumn()+")");
+
         }
         else{
             _player2discs=_player2discs+flips+1;
             _player1discs=_player1discs-flips;
+            System.out.println("Player 2 placed a "+disc.getType()+" in ("+p.getRow()+","+p.getColumn()+")");
+
         }
         _board[p.getRow()][p.getColumn()]=disc;
         while (!willFlip.isEmpty()){
             willFlip.getFirst().setOwner(currentPlayer);
             willFlip.removeFirst();
+        }
+        if(currentPlayer==_player1) {
+            for (int i = 0; i < _board.length; i++) {
+                for (int j = 0; j < _board.length; j++) {
+                    if (copy[i][j] != null && copy[i][j].getOwner() != _board[i][j].getOwner()) {
+                        System.out.println("Player 1 flipped " + copy[i][j].getType() + " in (" + i + "," + j + ")");
+
+                    }
+                }
+            }
+        }
+        if(currentPlayer==_player2) {
+            for (int i = 0; i < _board.length; i++) {
+                for (int j = 0; j < _board.length; j++) {
+                    if (copy[i][j] != null && copy[i][j].getOwner() != _board[i][j].getOwner()) {
+                        System.out.println("Player 2 flipped " + copy[i][j].getType() + " in (" + i + "," + j + ")");
+
+                    }
+                }
+            }
         }
         _allMoves.add(copy);
         System.out.println(" ");
@@ -139,13 +163,16 @@ public class GameLogic implements PlayableLogic{
             if(_player1discs > _player2discs){
                 _player1.addWin();
                 System.out.println("Player 1 wins with " +_player1discs + "! Player 2 had " +_player2discs + " discs.");
+                System.out.println(" ");
             }
             if(_player1discs < _player2discs){
                 _player2.addWin();
                 System.out.println("Player 2 wins with " +_player2discs + "! Player 1 had " +_player1discs + " discs.");
+                System.out.println(" ");
             }
             if(_player1discs == _player2discs){
                 System.out.println("Its a draw with " +_player2discs + " discs for each player:)");
+                System.out.println(" ");
             }
             return true;
         }
@@ -170,26 +197,47 @@ public class GameLogic implements PlayableLogic{
 
     @Override
     public void undoLastMove() {
-        if(!_allMoves.isEmpty()&&_player1.isHuman()&&_player2.isHuman()){
-            _board = _allMoves.pop();
-            _player1discs=0;
-            _player2discs=0;
-            for (int i = 0; i < this.getBoardSize(); i++){
-                for (int j = 0; j < this.getBoardSize(); j++){
-                    if(_board[i][j]!=null){
-                        if(_board[i][j].getOwner()==_player1){
-                            _player1discs=_player1discs+1;
-                        }
-                        else {
-                            _player2discs=_player2discs+1;
+        if (_player1.isHuman() && _player2.isHuman()) {
+            if (!_allMoves.isEmpty()) {
+                Player curent = get_currentPlayer();
+                List<Position> flipedDiscs = new ArrayList<>();
+                Position lastDisc = new Position(0, 0);
+                for (int i = 0; i < _board.length; i++) {
+                    for (int j = 0; j < _board.length; j++) {
+                        if (_board[i][j] != null) {
+                            if (_allMoves.peek()[i][j] == null) {
+                                lastDisc.setRow(i);
+                                lastDisc.setColumn(j);
+                            } else {
+                                if (_allMoves.peek()[i][j].getOwner() != _board[i][j].getOwner()) {
+                                    Position temp = new Position(i, j);
+                                    flipedDiscs.add(temp);
+                                }
+                            }
                         }
                     }
                 }
+                if (curent==_player1){
+                    _player1discs=_player1discs+flipedDiscs.size();
+                    _player2discs=_player2discs-(flipedDiscs.size()+1);
+                }
+                else{
+                    _player2discs=_player2discs+flipedDiscs.size();
+                    _player1discs=_player1discs-(flipedDiscs.size()+1);
+                }
+                System.out.println("Undoing last move:");
+                System.out.println("\tUndo: removing " + _board[lastDisc.getRow()][lastDisc.getColumn()].getType() + " from (" + lastDisc.getRow() + "," + lastDisc.getColumn() + ")");
+                while (!flipedDiscs.isEmpty()) {
+                    System.out.println("\tUndo: flipping back " + _board[flipedDiscs.getFirst().getRow()][flipedDiscs.getFirst().getColumn()].getType() + " in (" + flipedDiscs.getFirst().getRow() + "," + flipedDiscs.getFirst().getColumn() + ")");
+                    flipedDiscs.removeFirst();
+                }
+                _board = _allMoves.pop();
             }
+            else{
+            System.out.println("\tNo previous move available to undo.");
+            }
+            System.out.println(" ");
         }
-    }
-    public Disc[][] get_board() {
-        return _board;
     }
     public List<Disc> CountFlips(Move move, Disc[][] board){
         List<Disc> countFlips = new ArrayList<>();
