@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7eac4e63-82c9-4e2d-8ea0-877a8a9a2b87" name="Changes" comment="change the disc dountion">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOP_EX1_2025/GameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_EX1_2025/GameLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOP_EX1_2025/GreedyAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_EX1_2025/GreedyAI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOP_EX1_2025/Move.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_EX1_2025/Move.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP-TASK-1/GameLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP-TASK-1/GameLogic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP-TASK-1/GreedyAI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP-TASK-1/GreedyAI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP-TASK-1/Move.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP-TASK-1/Move.class" afterDir="false" />
-    </list>
+    <list default="true" id="7eac4e63-82c9-4e2d-8ea0-877a8a9a2b87" name="Changes" comment="change the disc dountion" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -89,7 +81,7 @@
       <workItem from="1731596210577" duration="38000" />
       <workItem from="1731654958311" duration="188000" />
       <workItem from="1731830647255" duration="73000" />
-      <workItem from="1731831270988" duration="11259000" />
+      <workItem from="1731831270988" duration="11880000" />
     </task>
     <task id="LOCAL‎-00001" summary="change the disc dountion">
       <option name="closed" value="true" />
@@ -147,7 +139,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731951756794</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="change the disc dountion">
+      <option name="closed" value="true" />
+      <created>1731954899643</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1731954899643</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
