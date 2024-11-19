@@ -5,15 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7eac4e63-82c9-4e2d-8ea0-877a8a9a2b87" name="Changes" comment="change the disc dountion">
-      <change afterPath="$PROJECT_DIR$/OOP_EX1_2025/AdvancedAI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_11_2024_17_20__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_11_2024_17_20__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_11_2024_17_20__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_11_2024_17_20__Changes_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_18_11_2024_19_26__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_18_11_2024_19_26__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_18_11_2024_19_26__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_18_11_2024_19_26__Changes_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_18_11_2024_20_35__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_18_11_2024_20_35__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOP_EX1_2025/AIPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_EX1_2025/AIPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP-TASK-1/GameLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP-TASK-1/GameLogic.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OOP_EX1_2025/GameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_EX1_2025/GameLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP-TASK-1/AIPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP-TASK-1/AIPlayer.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +165,31 @@
       <option name="project" value="LOCAL" />
       <updated>1731955533299</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="change the disc dountion">
+      <option name="closed" value="true" />
+      <created>1732021105497</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1732021105497</updated>
+    </task>
+    <task id="LOCAL-00011" summary="change the disc dountion">
+      <option name="closed" value="true" />
+      <created>1732021130213</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1732021130213</updated>
+    </task>
+    <task id="LOCAL-00012" summary="change the disc dountion">
+      <option name="closed" value="true" />
+      <created>1732021141687</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1732021141687</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

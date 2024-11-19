@@ -6,31 +6,12 @@ import java.util.Stack;
  * OrBibi
  */
 public class GameLogic implements PlayableLogic{
-    private Disc[][] _board = new Disc[8][8];
+    private final int _BOARDSIZE = 8;
+    private Disc[][] _board = new Disc[_BOARDSIZE][_BOARDSIZE];
     private final Stack<Disc[][]> _allMoves = new Stack<>();
     private Player _player1, _player2;
     private int _player1discs, _player2discs;
 
-    public Disc[][] getBoardCopy(Disc[][] board){
-        Disc[][] ans = new Disc[board.length][board[0].length];
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[0].length; j++) {
-                Disc temp = board[i][j];
-                if(temp!=null) {
-                    if(temp.getType().equals("⬤")){
-                        ans[i][j] = new SimpleDisc(temp.getOwner());
-                    }
-                    else if(temp.getType().equals("⭕")){
-                        ans[i][j] = new UnflippableDisc(temp.getOwner());
-                    }
-                    else{
-                        ans[i][j] = new BombDisc(temp.getOwner());
-                    }
-                }
-            }
-        }
-        return ans;
-    }
     @Override
     public boolean locate_disc(Position p, Disc disc) {
         Disc[][] copy = this.getBoardCopy(_board);
@@ -80,6 +61,28 @@ public class GameLogic implements PlayableLogic{
         System.out.println(" ");
         return true;
     }
+
+    public Disc[][] getBoardCopy(Disc[][] board){
+        Disc[][] ans = new Disc[board.length][board[0].length];
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                Disc temp = board[i][j];
+                if(temp!=null) {
+                    if(temp.getType().equals("⬤")){
+                        ans[i][j] = new SimpleDisc(temp.getOwner());
+                    }
+                    else if(temp.getType().equals("⭕")){
+                        ans[i][j] = new UnflippableDisc(temp.getOwner());
+                    }
+                    else{
+                        ans[i][j] = new BombDisc(temp.getOwner());
+                    }
+                }
+            }
+        }
+        return ans;
+    }
+
     public boolean CheckLocateDisc(Position p, Disc disc){
         Disc[][] board = this.getBoardCopy(_board);
         Move move = new Move(p,disc);
@@ -180,15 +183,15 @@ public class GameLogic implements PlayableLogic{
 
     @Override
     public void reset() {
-        Disc[][] start = new Disc[8][8];
+        Disc[][] start = new Disc[_BOARDSIZE][_BOARDSIZE];
         Disc disc33 = new SimpleDisc(_player1);
         Disc disc44 = new SimpleDisc(_player1);
         Disc disc34 = new SimpleDisc(_player2);
         Disc disc43 = new SimpleDisc(_player2);
-        start[3][3] = disc33;
-        start[4][4] = disc44;
-        start[4][3] = disc43;
-        start[3][4] = disc34;
+        start[(_BOARDSIZE/2)-1][(_BOARDSIZE/2)-1] = disc33;
+        start[(_BOARDSIZE/2)][(_BOARDSIZE/2)] = disc44;
+        start[(_BOARDSIZE/2)][(_BOARDSIZE/2)-1] = disc43;
+        start[(_BOARDSIZE/2)-1][(_BOARDSIZE/2)] = disc34;
         _player1discs=2;
         _player2discs=2;
         _allMoves.clear();

@@ -8,10 +8,10 @@ public class GreedyAI extends AIPlayer{
 
     @Override
     public Move makeMove(PlayableLogic gameStatus) {
-        Position bestMove = new Position(7,7);
+        Position bestMove = new Position(gameStatus.getBoardSize()-1,gameStatus.getBoardSize()-1);
         int maxFlips = 0;
-        for (int j=7; j>=0; j--){
-            for (int i=7; i>=0; i--){
+        for (int j=gameStatus.getBoardSize()-1; j>=0; j--){
+            for (int i=gameStatus.getBoardSize()-1; i>=0; i--){
                 Position temp = new Position(i,j);
                 int count = gameStatus.countFlips(temp);
                 if (count>maxFlips){
