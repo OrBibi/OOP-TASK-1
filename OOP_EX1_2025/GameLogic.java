@@ -194,10 +194,14 @@ public class GameLogic implements PlayableLogic{
                 if (curent==_player1){
                     _player1discs=_player1discs+flipedDiscs.size();
                     _player2discs=_player2discs-(flipedDiscs.size()+1);
+                    if(_board[lastDisc.getRow()][lastDisc.getColumn()].getType().equals("⭕"))_player2.add_unflippedable();
+                    if(_board[lastDisc.getRow()][lastDisc.getColumn()].getType().equals("💣"))_player2.add_bomb();
                 }
                 else{
                     _player2discs=_player2discs+flipedDiscs.size();
                     _player1discs=_player1discs-(flipedDiscs.size()+1);
+                    if(_board[lastDisc.getRow()][lastDisc.getColumn()].getType().equals("⭕"))_player1.add_unflippedable();
+                    if(_board[lastDisc.getRow()][lastDisc.getColumn()].getType().equals("💣"))_player1.add_bomb();
                 }
                 System.out.println("Undoing last move:");
                 System.out.println("\tUndo: removing " + _board[lastDisc.getRow()][lastDisc.getColumn()].getType() + " from (" + lastDisc.getRow() + "," + lastDisc.getColumn() + ")");
