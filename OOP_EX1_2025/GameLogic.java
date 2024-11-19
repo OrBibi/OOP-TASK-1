@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Stack;
 
 /**
- * OrBibi
+ * OrBibi1998
  */
 public class GameLogic implements PlayableLogic{
     private final int _BOARDSIZE = 8;
