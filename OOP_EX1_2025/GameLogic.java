@@ -61,34 +61,6 @@ public class GameLogic implements PlayableLogic{
         System.out.println(" ");
         return true;
     }
-
-    public Disc[][] getBoardCopy(Disc[][] board){
-        Disc[][] ans = new Disc[board.length][board[0].length];
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[0].length; j++) {
-                Disc temp = board[i][j];
-                if(temp!=null) {
-                    if(temp.getType().equals("⬤")){
-                        ans[i][j] = new SimpleDisc(temp.getOwner());
-                    }
-                    else if(temp.getType().equals("⭕")){
-                        ans[i][j] = new UnflippableDisc(temp.getOwner());
-                    }
-                    else{
-                        ans[i][j] = new BombDisc(temp.getOwner());
-                    }
-                }
-            }
-        }
-        return ans;
-    }
-
-    public boolean CheckLocateDisc(Position p, Disc disc){
-        Disc[][] board = this.getBoardCopy(_board);
-        Move move = new Move(p,disc);
-        List<Disc> willFlip = CountFlips(move, board);
-        return !willFlip.isEmpty();
-    }
     @Override
     public Disc getDiscAtPosition(Position position) {
         return _board[position.getRow()][position.getColumn()];
@@ -146,17 +118,6 @@ public class GameLogic implements PlayableLogic{
     public boolean isFirstPlayerTurn() {
         return (_allMoves.size()%2==0);
     }
-    public Player get_currentPlayer(){
-        Player currentPlayer;
-        if(isFirstPlayerTurn()){
-            currentPlayer=_player1;
-        }
-        else{
-            currentPlayer=_player2;
-        }
-        return currentPlayer;
-    }
-
     @Override
     public boolean isGameFinished() {
         if (!this.ValidMoves().isEmpty()){
@@ -237,11 +198,55 @@ public class GameLogic implements PlayableLogic{
                 _board = _allMoves.pop();
             }
             else{
-            System.out.println("\tNo previous move available to undo.");
+                System.out.println("\tNo previous move available to undo.");
             }
             System.out.println(" ");
         }
     }
+
+
+///////////////////////////////additional methods////////////////////////////////////////
+
+    public Disc[][] getBoardCopy(Disc[][] board){
+        Disc[][] ans = new Disc[board.length][board[0].length];
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                Disc temp = board[i][j];
+                if(temp!=null) {
+                    if(temp.getType().equals("⬤")){
+                        ans[i][j] = new SimpleDisc(temp.getOwner());
+                    }
+                    else if(temp.getType().equals("⭕")){
+                        ans[i][j] = new UnflippableDisc(temp.getOwner());
+                    }
+                    else{
+                        ans[i][j] = new BombDisc(temp.getOwner());
+                    }
+                }
+            }
+        }
+        return ans;
+    }
+
+    public boolean CheckLocateDisc(Position p, Disc disc){
+        Disc[][] board = this.getBoardCopy(_board);
+        Move move = new Move(p,disc);
+        List<Disc> willFlip = CountFlips(move, board);
+        return !willFlip.isEmpty();
+    }
+
+    public Player get_currentPlayer(){
+        Player currentPlayer;
+        if(isFirstPlayerTurn()){
+            currentPlayer=_player1;
+        }
+        else{
+            currentPlayer=_player2;
+        }
+        return currentPlayer;
+    }
+
+
     public List<Disc> CountFlips(Move move, Disc[][] board){
         List<Disc> countFlips = new ArrayList<>();
         Player currentPlayer = move.get_disc().getOwner();
