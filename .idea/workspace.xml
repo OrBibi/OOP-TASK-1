@@ -4,10 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7eac4e63-82c9-4e2d-8ea0-877a8a9a2b87" name="Changes" comment="change the disc dountion">
+    <list default="true" id="7eac4e63-82c9-4e2d-8ea0-877a8a9a2b87" name="Changes" comment="סידור של הפונקציות">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_19_2024_3_13_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_19_2024_3_13_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_19_2024_5_50_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_19_2024_5_50_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OOP_EX1_2025/GameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_EX1_2025/GameLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OOP_EX1_2025/GreedyAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_EX1_2025/GreedyAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OOP_EX1_2025/HumanPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_EX1_2025/HumanPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OOP_EX1_2025/Move.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_EX1_2025/Move.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OOP_EX1_2025/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_EX1_2025/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OOP_EX1_2025/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_EX1_2025/Position.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OOP_EX1_2025/RandomAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_EX1_2025/RandomAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP-TASK-1/GameLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP-TASK-1/GameLogic.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP-TASK-1/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP-TASK-1/Player.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,24 +40,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
@@ -66,7 +75,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
+        <option value="jdk-21.0.1-openjdk-21.0.1-f644763e9732-f98dd351" />
       </set>
     </attachedChunks>
   </component>
@@ -86,6 +95,7 @@
       <workItem from="1731654958311" duration="188000" />
       <workItem from="1731830647255" duration="73000" />
       <workItem from="1731831270988" duration="11259000" />
+      <workItem from="1732039060200" duration="6485000" />
     </task>
     <task id="LOCAL‎-00001" summary="change the disc dountion">
       <option name="closed" value="true" />
@@ -143,7 +153,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731951756794</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL‎-00008" summary="סידור של הפונקציות">
+      <option name="closed" value="true" />
+      <created>1732021939031</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL‎-00008" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1732021939031</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -164,6 +182,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Add files via upload" />
     <MESSAGE value="change the disc dountion" />
-    <option name="LAST_COMMIT_MESSAGE" value="change the disc dountion" />
+    <MESSAGE value="סידור של הפונקציות" />
+    <option name="LAST_COMMIT_MESSAGE" value="סידור של הפונקציות" />
   </component>
 </project>
