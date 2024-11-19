@@ -14,11 +14,13 @@ public class GameLogic implements PlayableLogic{
 
     @Override
     public boolean locate_disc(Position p, Disc disc) {
+        Player currentPlayer = get_currentPlayer();
         Disc[][] copy = this.getBoardCopy(_board);
         Move move = new Move(p,disc);
         List<Disc> willFlip = CountFlips(move,_board);
         if(willFlip.isEmpty())return false;
-        Player currentPlayer = get_currentPlayer();
+        if(disc.getType().equals("⭕")&&currentPlayer.getNumber_of_unflippedable()==0) return false;
+        if(disc.getType().equals("💣")&&currentPlayer.getNumber_of_bombs()==0) return false;
         int flips = willFlip.size();
         if(currentPlayer==_player1){
             _player1discs=_player1discs+flips+1;
@@ -33,6 +35,12 @@ public class GameLogic implements PlayableLogic{
 
         }
         _board[p.getRow()][p.getColumn()]=disc;
+        if(disc.getType().equals("⭕")){
+            disc.getOwner().reduce_unflippedable();
+        }
+        if(disc.getType().equals("💣")){
+            disc.getOwner().reduce_bomb();
+        }
         while (!willFlip.isEmpty()){
             willFlip.getFirst().setOwner(currentPlayer);
             willFlip.removeFirst();
@@ -155,6 +163,8 @@ public class GameLogic implements PlayableLogic{
         start[(_BOARDSIZE/2)-1][(_BOARDSIZE/2)] = disc34;
         _player1discs=2;
         _player2discs=2;
+        _player1.reset_bombs_and_unflippedable();
+        _player2.reset_bombs_and_unflippedable();
         _allMoves.clear();
         _board=start;
     }

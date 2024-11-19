@@ -11,14 +11,6 @@ public class Move {
         this._disc=disc;
     }
 
-    public void set_disc(Disc _disc) {
-        this._disc = _disc;
-    }
-
-    public void set_position(Position _position) {
-        this._position = _position;
-    }
-
     public Disc get_disc() {
         return _disc;
     }
