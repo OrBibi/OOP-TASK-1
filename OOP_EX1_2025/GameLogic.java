@@ -283,10 +283,9 @@ public class GameLogic implements PlayableLogic{
      */
     public List<Disc> listWillFlips(Move move, Disc[][] board){
         //Build list of disc that will flip after the move
-        Set<Disc> countFlips = new HashSet<>();
-        List<Disc> countFlipsWithoutDuplicates = new ArrayList<>();
+        List<Disc> countFlips = new ArrayList<>();
         //If the move is outside the board or on unavailable position return the list empty
-        if ((!this.isInside(move.position()))||(board[move.position().row()][move.position().col()] != null)) return countFlipsWithoutDuplicates;
+        if ((!this.isInside(move.position()))||(board[move.position().row()][move.position().col()] != null)) return countFlips;
 
 
         //Find the currentPlayer
@@ -297,7 +296,7 @@ public class GameLogic implements PlayableLogic{
         //Loop that run over the neighbors and check for flips
         for (int i = 0; i < 8; i++){
             //Check if the current neighbor is disc of another player
-            if(neighbors[i]!= null && neighbors[i].getOwner()!=move.disc().getOwner()){
+            if(neighbors[i]!= null && neighbors[i].getOwner()!=currentPlayer){
                 //We found neighbor disc that belong to another player,
                 //so we make a temp disc and position of that neighbor + we made a temp list of discs
                 Disc tempdisc = neighbors[i];
@@ -346,7 +345,8 @@ public class GameLogic implements PlayableLogic{
         countFlips.removeIf(Objects::isNull);
         Predicate<Disc> isCurrentPlayerDisc = Disc -> Disc.getOwner() == currentPlayer;
         countFlips.removeIf(isCurrentPlayerDisc);
-        countFlipsWithoutDuplicates = new ArrayList<>(countFlips);
+        Set<Disc> uniqueDiscs = new HashSet<>(countFlips);
+        List<Disc> countFlipsWithoutDuplicates = new ArrayList<>(uniqueDiscs);
         return countFlipsWithoutDuplicates;
     }
     /**
