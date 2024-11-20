@@ -1,7 +1,5 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Stack;
+import java.util.*;
+import java.util.function.Predicate;
 
 /**
  * This
@@ -263,62 +261,76 @@ public class GameLogic implements PlayableLogic{
         }
         return ans;
     }
+    /**
+     * This function makes a deep copy of the board
+     * @param position and disc
+     * @return deep copy of the board
+     */
 
-    public boolean CheckLocateDisc(Position p, Disc disc){
+    public boolean CheckLocateDisc(Position position, Disc disc){
         Disc[][] board = this.getBoardCopy(_board);
-        Move move = new Move(p,disc);
+        Move move = new Move(position,disc);
         List<Disc> willFlip = listWillFlips(move, board);
+        //If pot that disc in that position will flip 1 or more discs return true
         return !willFlip.isEmpty();
     }
 
 
-
+    /**
+     * This function return list of discs that will flip
+     * @param move and board
+     * @return list of discs
+     */
     public List<Disc> listWillFlips(Move move, Disc[][] board){
-        //build list of disc that will flip after the move
-        List<Disc> countFlips = new ArrayList<>();
-        //if the move is outside the board or on unavailable position return the list empty
-        if ((!this.isInside(move.position()))||(board[move.position().row()][move.position().col()] != null)) return countFlips;
+        //Build list of disc that will flip after the move
+        Set<Disc> countFlips = new HashSet<>();
+        List<Disc> countFlipsWithoutDuplicates = new ArrayList<>();
+        //If the move is outside the board or on unavailable position return the list empty
+        if ((!this.isInside(move.position()))||(board[move.position().row()][move.position().col()] != null)) return countFlipsWithoutDuplicates;
 
 
-        //find the currentPlayer
+        //Find the currentPlayer
         Player currentPlayer = move.disc().getOwner();
-        //get array of neighbors disks
+        //Get array of neighbors disks
         Disc[] neighbors = this.Neighbors(move.position());
 
-        //loop that run over the neighbors and check for flips
+        //Loop that run over the neighbors and check for flips
         for (int i = 0; i < 8; i++){
-            //check if the current neighbor is disc of another player
+            //Check if the current neighbor is disc of another player
             if(neighbors[i]!= null && neighbors[i].getOwner()!=move.disc().getOwner()){
-                //we found neighbor disc that belong to another player,
+                //We found neighbor disc that belong to another player,
                 //so we make a temp disc and position of that neighbor + we made a temp list of discs
                 Disc tempdisc = neighbors[i];
                 Position tempPosition = this.getNeighborPosition(move.position(),i);
-                List<Disc> tempCount = new ArrayList<>();
-                //we check the discs in the current neighbor direction all the way until we get to:
-                //null disc(empty position/outside the board) / disc of current player
+                Set<Disc> tempCount = new HashSet<>();
+                //We check the discs in the current neighbor direction all the way until we get to:
+                //Null disc(empty position/outside the board) / disc of current player
                 while (tempdisc!=null && tempdisc.getOwner()!= currentPlayer){
-                    //if the temp disc is not unFlippableDisc and not in the lists: we add it to the temp list of discs
+                    //If the temp disc is not unFlippableDisc and not in the lists: we add it to the temp list of discs
                     if (!tempdisc.getType().equals("⭕")&&!tempCount.contains(tempdisc) && !countFlips.contains(tempdisc))
                         tempCount.add(tempdisc);
-                    //if the temp disc is bombDisc we add the relevant neighbors including the chain reaction:
+                    //If the temp disc is bombDisc we add the relevant neighbors including the chain reaction:
                     if (tempdisc.getType().equals("💣")){
                         List<Position> Bombs = new ArrayList<>();
                         Bombs.add(tempPosition);
                         while (!Bombs.isEmpty()){
                             Disc[] bombAdd = this.Neighbors(Bombs.getFirst());
                             for (int x = 0; x < 8; x++){
-                                if(bombAdd[x]!=null&&bombAdd[x].getOwner()!=currentPlayer&&
-                                        !tempCount.contains(bombAdd[x])&&!countFlips.contains(bombAdd[x])){
-                                    if(!bombAdd[x].getType().equals("⭕")) tempCount.add(bombAdd[x]);
-                                    if (bombAdd[x].getType().equals("💣")){
-                                        Bombs.add(this.getNeighborPosition(Bombs.getFirst(),x));
+                                if(x!=i){
+                                    if(bombAdd[x]!=null&&bombAdd[x].getOwner()!=currentPlayer&&
+                                            !tempCount.contains(bombAdd[x])&&!countFlips.contains(bombAdd[x])){
+                                        if(!bombAdd[x].getType().equals("⭕")) tempCount.add(bombAdd[x]);
+                                        if (bombAdd[x].getType().equals("💣")){
+                                            Bombs.add(this.getNeighborPosition(Bombs.getFirst(),x));
+                                        }
                                     }
                                 }
+
                             }
                             Bombs.removeFirst();
                         }
                     }
-                    //here we make the move in the direction of current neighbor
+                    //Here we make the move in the direction of current neighbor
                     tempPosition = this.getNeighborPosition(tempPosition,i);
                     if (this.isInside(tempPosition)){
                         tempdisc = board[tempPosition.row()][tempPosition.col()];
@@ -327,14 +339,18 @@ public class GameLogic implements PlayableLogic{
                         tempdisc=null;
                     }
                 }
-                //if we arrive to disc that belong to the currentPlayer we add the temp list to the countFlips list
+                //If we arrive to disc that belong to the currentPlayer we add the temp list to the countFlips list
                 if(tempdisc!=null && this.isInside(tempPosition) && tempdisc.getOwner()==currentPlayer){
                     countFlips.addAll(tempCount);
                 }
             }
         }
+        //Protection from wrong listing income
         countFlips.removeIf(Objects::isNull);
-        return countFlips;
+        Predicate<Disc> complexCondition = Disc -> Disc.getOwner() == currentPlayer;
+        countFlips.removeIf(complexCondition);
+        countFlipsWithoutDuplicates = new ArrayList<>(countFlips);
+        return countFlipsWithoutDuplicates;
     }
     /**
      * This function checks if a position is inside the board
