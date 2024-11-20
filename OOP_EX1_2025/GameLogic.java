@@ -316,7 +316,6 @@ public class GameLogic implements PlayableLogic{
                         while (!Bombs.isEmpty()){
                             Disc[] bombAdd = this.Neighbors(Bombs.getFirst());
                             for (int x = 0; x < 8; x++){
-                                if(x!=i){
                                     if(bombAdd[x]!=null&&bombAdd[x].getOwner()!=currentPlayer&&
                                             !tempCount.contains(bombAdd[x])&&!countFlips.contains(bombAdd[x])){
                                         if(!bombAdd[x].getType().equals("⭕")) tempCount.add(bombAdd[x]);
@@ -324,8 +323,6 @@ public class GameLogic implements PlayableLogic{
                                             Bombs.add(this.getNeighborPosition(Bombs.getFirst(),x));
                                         }
                                     }
-                                }
-
                             }
                             Bombs.removeFirst();
                         }
