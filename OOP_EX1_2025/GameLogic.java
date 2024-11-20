@@ -273,27 +273,33 @@ public class GameLogic implements PlayableLogic{
 
 
     public List<Disc> listWillFlips(Move move, Disc[][] board){
+        //build list of disc that will flip after the move
         List<Disc> countFlips = new ArrayList<>();
+        //if the move is outside the board or on unavailable position return the list empty
+        if ((!this.isInside(move.position()))||(board[move.position().row()][move.position().col()] != null)) return countFlips;
+
+
+        //find the currentPlayer
         Player currentPlayer = move.disc().getOwner();
-
-        if ( (move.position().row()<0 || move.position().row()>= board.length) ||
-             (move.position().col()<0 || move.position().col()>= board[0].length))
-            return countFlips;
-
-        if (board[move.position().row()][move.position().col()] != null)
-            return countFlips;
-
+        //get array of neighbors disks
         Disc[] neighbors = this.Neighbors(move.position());
 
+        //loop that run over the neighbors and check for flips
         for (int i = 0; i < 8; i++){
+            //check if the current neighbor is disc of another player
             if(neighbors[i]!= null && neighbors[i].getOwner()!=move.disc().getOwner()){
+                //we found neighbor disc that belong to another player,
+                //so we make a temp disc and position of that neighbor + we made a temp list of discs
                 Disc tempdisc = neighbors[i];
                 Position tempPosition = this.getNeighborPosition(move.position(),i);
                 List<Disc> tempCount = new ArrayList<>();
-
-                while (tempdisc!=null && tempdisc.getOwner()!= currentPlayer && this.isInside(tempPosition)){
+                //we check the discs in the current neighbor direction all the way until we get to:
+                //null disc(empty position/outside the board) / disc of current player
+                while (tempdisc!=null && tempdisc.getOwner()!= currentPlayer){
+                    //if the temp disc is not unFlippableDisc and not in the lists: we add it to the temp list of discs
                     if (!tempdisc.getType().equals("⭕")&&!tempCount.contains(tempdisc) && !countFlips.contains(tempdisc))
                         tempCount.add(tempdisc);
+                    //if the temp disc is bombDisc we add the relevant neighbors including the chain reaction:
                     if (tempdisc.getType().equals("💣")){
                         List<Position> Bombs = new ArrayList<>();
                         Bombs.add(tempPosition);
@@ -311,12 +317,17 @@ public class GameLogic implements PlayableLogic{
                             Bombs.removeFirst();
                         }
                     }
+                    //here we make the move in the direction of current neighbor
                     tempPosition = this.getNeighborPosition(tempPosition,i);
                     if (this.isInside(tempPosition)){
                         tempdisc = board[tempPosition.row()][tempPosition.col()];
                     }
+                    else{
+                        tempdisc=null;
+                    }
                 }
-                if(tempdisc!=null && tempdisc .getOwner()==currentPlayer){
+                //if we arrive to disc that belong to the currentPlayer we add the temp list to the countFlips list
+                if(tempdisc!=null && this.isInside(tempPosition) && tempdisc.getOwner()==currentPlayer){
                     countFlips.addAll(tempCount);
                 }
             }
