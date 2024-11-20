@@ -344,8 +344,8 @@ public class GameLogic implements PlayableLogic{
         }
         //Protection from wrong listing income
         countFlips.removeIf(Objects::isNull);
-        Predicate<Disc> complexCondition = Disc -> Disc.getOwner() == currentPlayer;
-        countFlips.removeIf(complexCondition);
+        Predicate<Disc> isCurrentPlayerDisc = Disc -> Disc.getOwner() == currentPlayer;
+        countFlips.removeIf(isCurrentPlayerDisc);
         countFlipsWithoutDuplicates = new ArrayList<>(countFlips);
         return countFlipsWithoutDuplicates;
     }
