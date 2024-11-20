@@ -25,16 +25,16 @@ public class GameLogic implements PlayableLogic{
         if(currentPlayer==_player1){
             _player1discs=_player1discs+flips+1;
             _player2discs=_player2discs-flips;
-            System.out.println("Player 1 placed a "+disc.getType()+" in ("+p.getRow()+","+p.getColumn()+")");
+            System.out.println("Player 1 placed a "+disc.getType()+" in ("+p.row()+","+p.col()+")");
 
         }
         else{
             _player2discs=_player2discs+flips+1;
             _player1discs=_player1discs-flips;
-            System.out.println("Player 2 placed a "+disc.getType()+" in ("+p.getRow()+","+p.getColumn()+")");
+            System.out.println("Player 2 placed a "+disc.getType()+" in ("+p.row()+","+p.col()+")");
 
         }
-        _board[p.getRow()][p.getColumn()]=disc;
+        _board[p.row()][p.col()]=disc;
         if(disc.getType().equals("⭕")){
             disc.getOwner().reduce_unflippedable();
         }
@@ -71,7 +71,7 @@ public class GameLogic implements PlayableLogic{
     }
     @Override
     public Disc getDiscAtPosition(Position position) {
-        return _board[position.getRow()][position.getColumn()];
+        return _board[position.row()][position.col()];
     }
 
     @Override
@@ -150,6 +150,7 @@ public class GameLogic implements PlayableLogic{
         }
     }
 
+
     @Override
     public void reset() {
         Disc[][] start = new Disc[BOARD_SIZE][BOARD_SIZE];
@@ -194,19 +195,19 @@ public class GameLogic implements PlayableLogic{
                 if (current==_player1){
                     _player1discs=_player1discs+flipedDiscs.size();
                     _player2discs=_player2discs-(flipedDiscs.size()+1);
-                    if(_board[lastDisc.getRow()][lastDisc.getColumn()].getType().equals("⭕"))_player2.add_unflippedable();
-                    if(_board[lastDisc.getRow()][lastDisc.getColumn()].getType().equals("💣"))_player2.add_bomb();
+                    if(_board[lastDisc.row()][lastDisc.col()].getType().equals("⭕"))_player2.add_unflippedable();
+                    if(_board[lastDisc.row()][lastDisc.col()].getType().equals("💣"))_player2.add_bomb();
                 }
                 else{
                     _player2discs=_player2discs+flipedDiscs.size();
                     _player1discs=_player1discs-(flipedDiscs.size()+1);
-                    if(_board[lastDisc.getRow()][lastDisc.getColumn()].getType().equals("⭕"))_player1.add_unflippedable();
-                    if(_board[lastDisc.getRow()][lastDisc.getColumn()].getType().equals("💣"))_player1.add_bomb();
+                    if(_board[lastDisc.row()][lastDisc.col()].getType().equals("⭕"))_player1.add_unflippedable();
+                    if(_board[lastDisc.row()][lastDisc.col()].getType().equals("💣"))_player1.add_bomb();
                 }
                 System.out.println("Undoing last move:");
-                System.out.println("\tUndo: removing " + _board[lastDisc.getRow()][lastDisc.getColumn()].getType() + " from (" + lastDisc.getRow() + "," + lastDisc.getColumn() + ")");
+                System.out.println("\tUndo: removing " + _board[lastDisc.row()][lastDisc.col()].getType() + " from (" + lastDisc.row() + "," + lastDisc.col() + ")");
                 while (!flipedDiscs.isEmpty()) {
-                    System.out.println("\tUndo: flipping back " + _board[flipedDiscs.getFirst().getRow()][flipedDiscs.getFirst().getColumn()].getType() + " in (" + flipedDiscs.getFirst().getRow() + "," + flipedDiscs.getFirst().getColumn() + ")");
+                    System.out.println("\tUndo: flipping back " + _board[flipedDiscs.getFirst().row()][flipedDiscs.getFirst().col()].getType() + " in (" + flipedDiscs.getFirst().row() + "," + flipedDiscs.getFirst().col() + ")");
                     flipedDiscs.removeFirst();
                 }
                 _board = _allMoves.pop();
@@ -273,31 +274,34 @@ public class GameLogic implements PlayableLogic{
 
     public List<Disc> listWillFlips(Move move, Disc[][] board){
         List<Disc> countFlips = new ArrayList<>();
-        Player currentPlayer = move.get_disc().getOwner();
+        Player currentPlayer = move.disc().getOwner();
 
-        if ( (move.get_position().getRow()<0 || move.get_position().getRow()>= board.length) ||
-             (move.get_position().getColumn()<0 || move.get_position().getColumn()>= board[0].length))
+        if ( (move.position().row()<0 || move.position().row()>= board.length) ||
+             (move.position().col()<0 || move.position().col()>= board[0].length))
             return countFlips;
 
-        if (board[move.get_position().getRow()][move.get_position().getColumn()] != null)
+        if (board[move.position().row()][move.position().col()] != null)
             return countFlips;
 
-        Disc[] neighbors = this.Neighbors(move.get_position());
+        Disc[] neighbors = this.Neighbors(move.position());
 
         for (int i = 0; i < 8; i++){
-            if(neighbors[i]!= null && neighbors[i].getOwner()!=move.get_disc().getOwner()){
+            if(neighbors[i]!= null && neighbors[i].getOwner()!=move.disc().getOwner()){
                 Disc tempdisc = neighbors[i];
-                Position tempPosition = this.getNeighborPosition(move.get_position(),i);
+                Position tempPosition = this.getNeighborPosition(move.position(),i);
                 List<Disc> tempCount = new ArrayList<>();
-                while (tempdisc!=null&&tempdisc.getOwner()!= currentPlayer && this.isInside(tempPosition)){
-                    if (!tempdisc.getType().equals("⭕")&&!tempCount.contains(tempdisc)&&!countFlips.contains(tempdisc))tempCount.add(tempdisc);
+
+                while (tempdisc!=null && tempdisc.getOwner()!= currentPlayer && this.isInside(tempPosition)){
+                    if (!tempdisc.getType().equals("⭕")&&!tempCount.contains(tempdisc) && !countFlips.contains(tempdisc))
+                        tempCount.add(tempdisc);
                     if (tempdisc.getType().equals("💣")){
                         List<Position> Bombs = new ArrayList<>();
                         Bombs.add(tempPosition);
                         while (!Bombs.isEmpty()){
                             Disc[] bombAdd = this.Neighbors(Bombs.getFirst());
                             for (int x = 0; x < 8; x++){
-                                if(bombAdd[x]!=null&&bombAdd[x].getOwner()!=currentPlayer&&!tempCount.contains(bombAdd[x])&&!countFlips.contains(bombAdd[x])){
+                                if(bombAdd[x]!=null&&bombAdd[x].getOwner()!=currentPlayer&&
+                                        !tempCount.contains(bombAdd[x])&&!countFlips.contains(bombAdd[x])){
                                     if(!bombAdd[x].getType().equals("⭕")) tempCount.add(bombAdd[x]);
                                     if (bombAdd[x].getType().equals("💣")){
                                         Bombs.add(this.getNeighborPosition(Bombs.getFirst(),x));
@@ -309,7 +313,7 @@ public class GameLogic implements PlayableLogic{
                     }
                     tempPosition = this.getNeighborPosition(tempPosition,i);
                     if (this.isInside(tempPosition)){
-                        tempdisc = board[tempPosition.getRow()][tempPosition.getColumn()];
+                        tempdisc = board[tempPosition.row()][tempPosition.col()];
                     }
                 }
                 if(tempdisc!=null && tempdisc .getOwner()==currentPlayer){
@@ -325,8 +329,8 @@ public class GameLogic implements PlayableLogic{
      * @return true if inside, false if not
      */
     public boolean isInside(Position p) {
-        return (p.getRow() >= 0 && p.getColumn() >= 0 &&
-                p.getRow() < this._board.length && p.getColumn() < this._board[0].length);
+        return (p.row() >= 0 && p.col() >= 0 &&
+                p.row() < this._board.length && p.col() < this._board[0].length);
     }
 
     /**
@@ -337,20 +341,20 @@ public class GameLogic implements PlayableLogic{
     public Disc[] Neighbors(Position p) {
         Disc[] neighbors = new Disc[8];
 
-        // Directions: {row offset, column offset}
+        // Directions: {row value, column value}
         int[][] directions = {
-                {-1,  1}, // UpLeft
-                { 0,  1}, // Up
-                { 1,  1}, // UpRight
-                { 1,  0}, // Right
-                { 1, -1}, // DownRight
-                { 0, -1}, // Down
-                {-1, -1}, // DownLeft
-                {-1,  0}  // Left
+                {-1, -1}, // UpLeft
+                {-1,  0}, // Up
+                {-1,  1}, // UpRight
+                { 0,  1}, // Right
+                { 1, 1}, // DownRight
+                { 1, 0}, // Down
+                { 1, -1}, // DownLeft
+                {0, -1}  // Left
         };
         for (int i = 0; i < directions.length; i++) {
-            Position neighborPos = new Position(p.getRow() + directions[i][0]  ,
-                                               p.getColumn() + directions[i][1]);
+            Position neighborPos = new Position(p.row() + directions[i][0]  ,
+                                               p.col() + directions[i][1]);
             if (this.isInside(neighborPos)) {
                 neighbors[i] = this.getDisc(neighborPos);
             } else {
@@ -368,18 +372,20 @@ public class GameLogic implements PlayableLogic{
      * @return the position of the neighbor
      */
     public Position getNeighborPosition(Position p, int neighbor) {
+
+        // Directions: {row value, column value}
         int[][] directions = {
-                {-1,  1}, // UpLeft
-                { 0,  1}, // Up
-                { 1,  1}, // UpRight
-                { 1,  0}, // Right
-                { 1, -1}, // DownRight
-                { 0, -1}, // Down
-                {-1, -1}, // DownLeft
-                {-1,  0}  // Left
+                {-1, -1}, // UpLeft
+                {-1,  0}, // Up
+                {-1,  1}, // UpRight
+                { 0,  1}, // Right
+                { 1, 1}, // DownRight
+                { 1, 0}, // Down
+                { 1, -1}, // DownLeft
+                {0,  -1}  // Left
         };
-        int newRow = p.getRow() + directions[neighbor][0];
-        int newColumn = p.getColumn() + directions[neighbor][1];
+        int newRow = p.row() + directions[neighbor][0];
+        int newColumn = p.col() + directions[neighbor][1];
         return new Position(newRow, newColumn);
     }
 
@@ -501,7 +507,7 @@ public class GameLogic implements PlayableLogic{
     }
 
     public Disc getDisc(Position p) {
-        return this.getDisc(p.getRow(), p.getColumn());
+        return this.getDisc(p.row(), p.col());
     }
 
 

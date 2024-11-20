@@ -13,8 +13,7 @@ public abstract class Player {
     /**
      * Constructor for Player.
      * Initializes player number and bombs and unflippedable discs and wins.
-     *
-     * @param isPlayerOne indicates whether this player is Player 1 or 2.
+     * @param isPlayerOne indicates whether this player is Player 1 or 2 by true or false.
      */
     public Player(boolean isPlayerOne) {
         this.isPlayerOne = isPlayerOne;

@@ -19,7 +19,7 @@ public class RandomAI extends AIPlayer {
     /**
      * Generates a random move from the list of valid moves.
      * The move selected random position and disc type.
-     * (If there are bombs and Unflippable discs)
+     * (If the random disc is special and this kind of special disc finished, it takes a simple disc )
      * @param gameStatus The current state of the game, including valid moves and board state.
      * @return A randomly generated Move object.
      */

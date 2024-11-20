@@ -19,8 +19,16 @@ public class Position {
      * Gets the row value
      * @return the row value.
      */
-    public int getRow() {
+    public int row() {
         return _row;
+    }
+
+    /**
+     * Get the column value
+     * @return the column value.
+     */
+    public int col() {
+        return _column;
     }
 
     /**
@@ -32,14 +40,6 @@ public class Position {
     }
 
     /**
-     * Get the column value
-     * @return the column value.
-     */
-    public int getColumn() {
-        return _column;
-    }
-
-    /**
      * Sets the row value.
      * @param column the new row value.
      */
@@ -47,26 +47,5 @@ public class Position {
         this._column = column;
     }
 
-
-
-    /**
-     * ///////////////////////////////////////////
-     * for the GUI:
-     * @return the row index.
-    ////////////////////////////////////////////
-     */
-    public int row() {
-        return _row;
-    }
-
-    /**
-     * ///////////////////////////////////////////
-     * for the GUI:
-     * @return the column index.
-    ////////////////////////////////////////////
-     */
-    public int col() {
-        return _column;
-    }
 
 }
