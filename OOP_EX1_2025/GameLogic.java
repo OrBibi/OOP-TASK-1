@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Stack;
 
 /**
@@ -332,6 +333,7 @@ public class GameLogic implements PlayableLogic{
                 }
             }
         }
+        countFlips.removeIf(Objects::isNull);
         return countFlips;
     }
     /**
@@ -400,117 +402,6 @@ public class GameLogic implements PlayableLogic{
         return new Position(newRow, newColumn);
     }
 
-
-//    /**
-//     * This function creates an array of neighbors of a disc position
-//     * @param p Poistion
-//     * @return array of 8 neighbors
-//     */
-//    public Disc[] Neighbors(Position p){
-//        Disc[] neighbors = new Disc[8];
-//        neighbors[0]=this.NeighborUpLeft(p);
-//        neighbors[1]=this.NeighborUp(p);
-//        neighbors[2]=this.NeighborUpRight(p);
-//        neighbors[3]=this.NeighborRight(p);
-//        neighbors[4]=this.NeighborDownRight(p);
-//        neighbors[5]=this.NeighborDown(p);
-//        neighbors[6]=this.NeighborDownLeft(p);
-//        neighbors[7]=this.NeighborLeft(p);
-//        return neighbors;
-//    }
-//
-//    /**
-//     * All the next 8 functions are checks if the i neighbor is inside the board
-//     * and if yes its return the disc type
-//     * @param p position
-//     * @return disc type of the neighbored
-//     */
-//    //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-//    public Disc NeighborUp(Position p){
-//        Position up = new Position(p.getRow(), p.getColumn()+1);
-//        if (this.isInside(up)){
-//            return this.getDisc(up);
-//        }
-//        else return null;
-//    }
-//    public Disc NeighborDown(Position p){
-//        Position down = new Position(p.getRow(), p.getColumn()-1);
-//        if (this.isInside(down)){
-//            return this.getDisc(down);
-//        }
-//        else return null;
-//    }
-//    public Disc NeighborRight(Position p){
-//        Position right = new Position(p.getRow()+1, p.getColumn());
-//        if (this.isInside(right)){
-//            return this.getDisc(right);
-//        }
-//        else return null;
-//    }
-//    public Disc NeighborLeft(Position p){
-//        Position left = new Position(p.getRow()-1, p.getColumn());
-//        if (this.isInside(left)){
-//            return this.getDisc(left);
-//        }
-//        else return null;
-//    }
-//    public Disc NeighborUpRight(Position p){
-//        Position upright = new Position(p.getRow()+1, p.getColumn()+1);
-//        if (this.isInside(upright)){
-//            return this.getDisc(upright);
-//        }
-//        else return null;
-//    }
-//    public Disc NeighborUpLeft(Position p){
-//        Position upleft = new Position(p.getRow()-1, p.getColumn()+1);
-//        if (this.isInside(upleft)){
-//            return this.getDisc(upleft);
-//        }
-//        else return null;
-//    }
-//    public Disc NeighborDownRight(Position p){
-//        Position downright = new Position(p.getRow()+1, p.getColumn()-1);
-//        if (this.isInside(downright)){
-//            return this.getDisc(downright);
-//        }
-//        else return null;
-//    }
-//    public Disc NeighborDownLeft(Position p){
-//        Position downleft = new Position(p.getRow()-1, p.getColumn()-1);
-//        if (this.isInside(downleft)){
-//            return this.getDisc(downleft);
-//        }
-//        else return null;
-//    }
-//    //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-//    public Position getNeighborPosition(Position p, int neighbor){
-//        if(neighbor==0) {
-//            return new Position(p.getRow() - 1, p.getColumn() + 1);
-//        }
-//        if(neighbor==1) {
-//            return new Position(p.getRow() , p.getColumn() + 1);
-//        }
-//        if(neighbor==2) {
-//            return new Position(p.getRow() + 1, p.getColumn() + 1);
-//        }
-//        if(neighbor==3) {
-//            return new Position(p.getRow() + 1, p.getColumn());
-//        }
-//        if(neighbor==4) {
-//            return new Position(p.getRow() + 1, p.getColumn() - 1);
-//        }
-//        if(neighbor==5) {
-//            return new Position(p.getRow() , p.getColumn() - 1);
-//        }
-//        if(neighbor==6) {
-//            return new Position(p.getRow() - 1, p.getColumn() - 1);
-//        }
-//        if(neighbor==7) {
-//            return new Position(p.getRow() - 1, p.getColumn() );
-//        }
-//        return null;
-//    }
 
 
     public Disc getDisc(int row, int column) {
