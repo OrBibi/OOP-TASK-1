@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7eac4e63-82c9-4e2d-8ea0-877a8a9a2b87" name="Changes" comment="change the disc dountion">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOP_EX1_2025/GameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_EX1_2025/GameLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP-TASK-1/GameLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP-TASK-1/GameLogic.class" afterDir="false" />
-    </list>
+    <list default="true" id="7eac4e63-82c9-4e2d-8ea0-877a8a9a2b87" name="Changes" comment="change the disc dountion" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -176,7 +172,31 @@
       <option name="project" value="LOCAL" />
       <updated>1732111825646</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="change the disc dountion">
+      <option name="closed" value="true" />
+      <created>1732112596860</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1732112596860</updated>
+    </task>
+    <task id="LOCAL-00013" summary="change the disc dountion">
+      <option name="closed" value="true" />
+      <created>1732112615685</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1732112615685</updated>
+    </task>
+    <task id="LOCAL-00014" summary="change the disc dountion">
+      <option name="closed" value="true" />
+      <created>1732112934013</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1732112934013</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
