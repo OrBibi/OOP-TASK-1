@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7eac4e63-82c9-4e2d-8ea0-877a8a9a2b87" name="Changes" comment="change the disc dountion">
-      <change beforePath="$PROJECT_DIR$/OOP_EX1_2025/GreedyAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_EX1_2025/GreedyAI.java" afterDir="false" />
-    </list>
+    <list default="true" id="7eac4e63-82c9-4e2d-8ea0-877a8a9a2b87" name="Changes" comment="change the disc dountion" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,6 +19,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/OOP_EX1_2025/GreedyAI.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -240,7 +241,23 @@
       <option name="project" value="LOCAL" />
       <updated>1732186675238</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="change the disc dountion">
+      <option name="closed" value="true" />
+      <created>1732200991128</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1732200991128</updated>
+    </task>
+    <task id="LOCAL-00019" summary="change the disc dountion">
+      <option name="closed" value="true" />
+      <created>1732201196380</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1732201196380</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
