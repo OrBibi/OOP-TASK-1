@@ -99,9 +99,8 @@ public class GameLogic implements PlayableLogic{
     public int countFlips(Position p) {
         Player currentPlayer = get_currentPlayer();
         Disc disc = new SimpleDisc(currentPlayer);
-        Disc[][] board = this.getBoardCopy(_board);
         Move move = new Move(p, disc);
-        List<Disc> willFlip = listWillFlips(move,board);
+        List<Disc> willFlip = listWillFlips(move,_board);
         return willFlip.size();
     }
 
@@ -242,20 +241,22 @@ public class GameLogic implements PlayableLogic{
      * @return deep copy of the board
      */
     public Disc[][] getBoardCopy(Disc[][] board){
-        Disc[][] ans = new Disc[board.length][board[0].length];
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[0].length; j++) {
-                Disc temp = board[i][j];
-                if(temp!=null) {
-                    if(temp.getType().equals("⬤")){
-                        ans[i][j] = new SimpleDisc(temp.getOwner());
+        Disc[][] ans = new Disc[BOARD_SIZE][BOARD_SIZE];
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            for (int j = 0; j < BOARD_SIZE; j++) {
+                if(board[i][j]!=null) {
+                    if(board[i][j].getType().equals("⬤")){
+                        ans[i][j] = new SimpleDisc(board[i][j].getOwner());
                     }
-                    else if(temp.getType().equals("⭕")){
-                        ans[i][j] = new UnflippableDisc(temp.getOwner());
+                    if(board[i][j].getType().equals("⭕")){
+                        ans[i][j] = new UnflippableDisc(board[i][j].getOwner());
                     }
-                    else{
-                        ans[i][j] = new BombDisc(temp.getOwner());
+                    if(board[i][j].getType().equals("💣")){
+                        ans[i][j] = new BombDisc(board[i][j].getOwner());
                     }
+                }
+                else{
+                    ans[i][j]=null;
                 }
             }
         }
@@ -290,7 +291,7 @@ public class GameLogic implements PlayableLogic{
 
         //Find the currentPlayer
         Player currentPlayer = move.disc().getOwner();
-        //Get array of neighbors disks
+        //Get array of neighbors disks of the move position
         Disc[] neighbors = this.Neighbors(move.position());
 
         //Loop that run over the neighbors and check for flips
@@ -301,24 +302,23 @@ public class GameLogic implements PlayableLogic{
                 //so we make a temp disc and position of that neighbor + we made a temp list of discs
                 Disc tempdisc = neighbors[i];
                 Position tempPosition = this.getNeighborPosition(move.position(),i);
-                Set<Disc> tempCount = new HashSet<>();
+                List<Disc> tempCount = new ArrayList<>();
                 //We check the discs in the current neighbor direction all the way until we get to:
                 //Null disc(empty position/outside the board) / disc of current player
                 while (tempdisc!=null && tempdisc.getOwner()!= currentPlayer){
                     //If the temp disc is not unFlippableDisc and not in the lists: we add it to the temp list of discs
-                    if (!tempdisc.getType().equals("⭕")&&!tempCount.contains(tempdisc) && !countFlips.contains(tempdisc))
+                    if (!tempdisc.getType().equals("⭕")&&!tempCount.contains(tempdisc))
                         tempCount.add(tempdisc);
                     //If the temp disc is bombDisc we add the relevant neighbors including the chain reaction:
                     if (tempdisc.getType().equals("💣")){
                         List<Position> Bombs = new ArrayList<>();
                         Bombs.add(tempPosition);
                         while (!Bombs.isEmpty()){
-                            Disc[] bombAdd = this.Neighbors(Bombs.getFirst());
+                            Disc[] bombNeighbors = this.Neighbors(Bombs.getFirst());
                             for (int x = 0; x < 8; x++){
-                                    if(bombAdd[x]!=null&&bombAdd[x].getOwner()!=currentPlayer&&
-                                            !tempCount.contains(bombAdd[x])&&!countFlips.contains(bombAdd[x])){
-                                        if(!bombAdd[x].getType().equals("⭕")) tempCount.add(bombAdd[x]);
-                                        if (bombAdd[x].getType().equals("💣")){
+                                    if(bombNeighbors[x]!=null&&bombNeighbors[x].getOwner()!=currentPlayer&&!tempCount.contains(bombNeighbors[x])){
+                                        if(!bombNeighbors[x].getType().equals("⭕")) tempCount.add(bombNeighbors[x]);
+                                        if (bombNeighbors[x].getType().equals("💣")){
                                             Bombs.add(this.getNeighborPosition(Bombs.getFirst(),x));
                                         }
                                     }
@@ -336,15 +336,12 @@ public class GameLogic implements PlayableLogic{
                     }
                 }
                 //If we arrive to disc that belong to the currentPlayer we add the temp list to the countFlips list
-                if(tempdisc!=null && this.isInside(tempPosition) && tempdisc.getOwner()==currentPlayer){
+                if(tempdisc!=null && !tempCount.isEmpty()){
                     countFlips.addAll(tempCount);
                 }
             }
         }
-        //Protection from wrong listing income
-        countFlips.removeIf(Objects::isNull);
-        Predicate<Disc> isCurrentPlayerDisc = Disc -> Disc.getOwner() == currentPlayer;
-        countFlips.removeIf(isCurrentPlayerDisc);
+        //Protection from wrong double income
         Set<Disc> uniqueDiscs = new HashSet<>(countFlips);
         List<Disc> countFlipsWithoutDuplicates = new ArrayList<>(uniqueDiscs);
         return countFlipsWithoutDuplicates;
