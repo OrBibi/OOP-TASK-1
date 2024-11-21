@@ -1,56 +1,46 @@
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
-/**
- * The class represents an AI player that chooses moves based on a greedy algorithm.
- * It selects the move that flips the maximum number of opponent discs.
- */
 
 public class GreedyAI extends AIPlayer{
-    /**
-     * Constructor for the GreedyAI.
-     * @param isPlayerOne Indicates if the player is Player 1.
-     */
     public GreedyAI(boolean isPlayerOne) {
         super(isPlayerOne);
     }
 
-    /**
-        ?????????????????????????????????????????????????????????
-     * @param gameStatus The current state of the game.
-     * @return The best Move according to the greedy algorithm.
-     */
-    @Override
     public Move makeMove(PlayableLogic gameStatus) {
-        Position bestMove = new Position(gameStatus.getBoardSize()-1,gameStatus.getBoardSize()-1);
-        int maxFlips = 0;
-        for (int j=gameStatus.getBoardSize()-1; j>=0; j--){
-            for (int i=gameStatus.getBoardSize()-1; i>=0; i--){
-                Position temp = new Position(i,j);
-                int count = gameStatus.countFlips(temp);
-                if (count>maxFlips){
-                    maxFlips=count;
-                    bestMove.setRow(i);
-                    bestMove.setColumn(j);
-                }
+        // List of all the position
+        List<Position> allPositions = new ArrayList<>();
+        for (int j = gameStatus.getBoardSize() - 1; j >= 0; j--) {
+            for (int i = gameStatus.getBoardSize() - 1; i >= 0; i--) {
+                allPositions.add(new Position(i, j));
             }
         }
+        Comparator<Position> flipComparator = new Comparator<Position>() {
+            @Override
+            public int compare(Position p1, Position p2) {
+                int flips1 = gameStatus.countFlips(p1);
+                int flips2 = gameStatus.countFlips(p2);
+
+                // First comparing by flips:
+                if (flips1 != flips2) {
+                    return Integer.compare(flips2, flips1);
+                } else {
+                    // If the flips are equal: comparing by column
+                    if (p1.col() != p2.col()) {
+                        return Integer.compare(p2.col(), p1.col());
+                    } else {
+                        // If the flips and column are equal: comparing by row
+                        return Integer.compare(p2.row(), p1.row());
+                    }
+                }
+            }
+        };
+        // The sort of the position by the comparator, and taking the first
+        allPositions.sort(flipComparator);
+        Position bestMove = allPositions.getFirst();
         Disc disc = new SimpleDisc(this);
-        Move move = new Move(bestMove,disc);
+        Move move = new Move(bestMove, disc);
         return move;
     }
-    /////////////////////////////////// compertor option///////////////////////////
-//    @Override
-//    public Move makeMove(PlayableLogic gameStatus) {
-//        List<Position> validMoves = gameStatus.ValidMoves();
-//
-//        // Sort the valid moves based on the criteria
-//        validMoves.sort(Comparator
-//                .comparingInt((Position pos) -> gameStatus.countFlips(pos)) // Maximize flips
-//                .thenComparingInt(Position::getColumn).reversed() // Rightmost column
-//                .thenComparingInt(Position::getRow).reversed()); // Bottom-most row
-//
-//        // The best move is the last one in the sorted list
-//        Position bestMove = validMoves.get(validMoves.size() - 1);
-//        Disc disc = new SimpleDisc(this);
-//        return new Move(bestMove, disc);
-//    }
 }
