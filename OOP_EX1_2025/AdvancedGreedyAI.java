@@ -140,11 +140,30 @@ public class AdvancedGreedyAI extends AIPlayer {
         int row = corner.row();
         int col = corner.col();
 
-        // Add adjacent positions (up, down, left, right)
-        if (row > 0) adjacentPositions.add(new Position(row - 1, col));  // up
-        if (row < 7) adjacentPositions.add(new Position(row + 1, col));  // down
-        if (col > 0) adjacentPositions.add(new Position(row, col - 1));  // left
-        if (col < 7) adjacentPositions.add(new Position(row, col + 1));  // right
+        // If the corner is (0,0)
+        if (row == 0 && col == 0) {
+            adjacentPositions.add(new Position(0, 1));  // מימין לפינה
+            adjacentPositions.add(new Position(1, 0));  // למטה לפינה
+            adjacentPositions.add(new Position(1, 1));  // בזווית לפינה
+        }
+        // If the corner is (0,7)
+        else if (row == 0 && col == 7) {
+            adjacentPositions.add(new Position(0, 6));  // משמאל לפינה
+            adjacentPositions.add(new Position(1, 7));  // למטה לפינה
+            adjacentPositions.add(new Position(1, 6));  // בזווית לפינה
+        }
+        // If the corner is (7,0)
+        else if (row == 7 && col == 0) {
+            adjacentPositions.add(new Position(6, 0));  // למעלה לפינה
+            adjacentPositions.add(new Position(7, 1));  // מימין לפינה
+            adjacentPositions.add(new Position(6, 1));  // בזווית לפינה
+        }
+        // If the corner is (7,7)
+        else if (row == 7 && col == 7) {
+            adjacentPositions.add(new Position(7, 6));  // משמאל לפינה
+            adjacentPositions.add(new Position(6, 7));  // למעלה לפינה
+            adjacentPositions.add(new Position(6, 6));  // בזווית לפינה
+        }
 
         return adjacentPositions.toArray(new Position[0]);
     }
