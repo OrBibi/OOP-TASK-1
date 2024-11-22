@@ -4,7 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7eac4e63-82c9-4e2d-8ea0-877a8a9a2b87" name="Changes" comment="change the disc dountion" />
+    <list default="true" id="7eac4e63-82c9-4e2d-8ea0-877a8a9a2b87" name="Changes" comment="change the disc dountion">
+      <change afterPath="$PROJECT_DIR$/OOP_EX1_2025/AdvancedGreedyAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_14_2024_3_28_PM_[Changes]1/GameLogic.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_14_2024_3_28_PM_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_14_2024_3_28_PM__Changes_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_11_2024_17_20_[Changes]1/GameLogic.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_11_2024_17_20_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_11_2024_17_20__Changes_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OOP_EX1_2025/AIPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_EX1_2025/AIPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OOP_EX1_2025/RandomAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_EX1_2025/RandomAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP-TASK-1/AIPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP-TASK-1/AIPlayer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP-TASK-1/RandomAI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP-TASK-1/RandomAI.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,6 +27,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -257,7 +271,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732201196380</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="change the disc dountion">
+      <option name="closed" value="true" />
+      <created>1732201309468</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1732201309468</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

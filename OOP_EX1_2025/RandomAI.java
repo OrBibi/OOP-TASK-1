@@ -27,7 +27,7 @@ public class RandomAI extends AIPlayer {
     public Move makeMove(PlayableLogic gameStatus) {
         // Retrieve the list of valid moves.
         List<Position> validMoves = gameStatus.ValidMoves();
-
+        if(validMoves.isEmpty())return null;
         // Select a random position from the valid moves.
         Random randomMove = new Random();
         int randomIndex = randomMove.nextInt(validMoves.size());
