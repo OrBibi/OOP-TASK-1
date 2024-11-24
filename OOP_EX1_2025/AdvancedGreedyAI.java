@@ -1,12 +1,37 @@
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-//Achieves better results when the player is player 2, on average reaches a ratio of 1:10 against the RandomAI
-public class AdvancedGreedyAI extends AIPlayer {
 
+/**
+ * This class represents an AI player that good at playing against the random AI player (10:1 wins)
+ * (Achieves better results when the player is player 2,
+ * if he is the first player in half of the plays he will get the 10:1 ratio)
+ */
+
+public class AdvancedGreedyAI extends AIPlayer {
+    /**
+     * constructor for the AdvancedGreedyAI player
+     * @param isPlayerOne
+     */
     public AdvancedGreedyAI(boolean isPlayerOne) {
         super(isPlayerOne);
     }
+
+    /**
+     * in the first 2 moves he chooses the unflippable type, from the 3 move he chooses the Simple type
+     * The player choose the position by those preferences:
+     * available corner
+     * position that is a neighbor of corner that belong to him
+     * then there is a different between numberOfDiscOnBoard>11 or numberOfDiscOnBoard<=11
+     * for numberOfDiscOnBoard<=11:
+     * it chooses position that flips the lowest number of discs
+     * for numberOfDiscOnBoard>11
+     * it chooses the position that flips the most number of discs
+     * if there are 2 or more position with the same 'flips':
+     * it tries to avoid choosing a position that is a neighbor of an empty corner
+     * @param gameStatus
+     * @return move
+     */
 
     public Move makeMove(PlayableLogic gameStatus) {
         // Choose the disc kind:
@@ -80,6 +105,7 @@ public class AdvancedGreedyAI extends AIPlayer {
             Position bestMove = allPositions.getFirst();
             return new Move(bestMove, disc);
         }
+        //if discsOnTheBoard<11 it chooses position that flips the lowest number of discs
         else{
             int x=0;
             int y=0;
@@ -97,7 +123,9 @@ public class AdvancedGreedyAI extends AIPlayer {
         }
     }
 
-    // Function to calculate the penalty for positions near empty corners
+    /**
+     * Function to calculate the penalty for positions near empty corners
+      */
     private int calculatePenaltyForCornerProximity(Position position, PlayableLogic gameStatus) {
         Position[] corners = new Position[]{
                 new Position(0, 0),
@@ -122,7 +150,9 @@ public class AdvancedGreedyAI extends AIPlayer {
         return penalty;
     }
 
-    // Function to check if a position is adjacent to a given corner
+    /**
+     * Function to check if a position is adjacent to a given corner
+      */
     private boolean isAdjacentToCorner(Position position, Position corner) {
         Position[] adjacentPositions = getAdjacentPositions(corner);
         for (Position adjacent : adjacentPositions) {
@@ -133,7 +163,9 @@ public class AdvancedGreedyAI extends AIPlayer {
         return false;
     }
 
-    // Function to get adjacent positions around a corner
+    /**
+     * Function to get adjacent positions around a corner
+      */
     private Position[] getAdjacentPositions(Position corner) {
         List<Position> adjacentPositions = new ArrayList<>();
 
@@ -142,27 +174,27 @@ public class AdvancedGreedyAI extends AIPlayer {
 
         // If the corner is (0,0)
         if (row == 0 && col == 0) {
-            adjacentPositions.add(new Position(0, 1));  // מימין לפינה
-            adjacentPositions.add(new Position(1, 0));  // למטה לפינה
-            adjacentPositions.add(new Position(1, 1));  // בזווית לפינה
+            adjacentPositions.add(new Position(0, 1));
+            adjacentPositions.add(new Position(1, 0));
+            adjacentPositions.add(new Position(1, 1));
         }
         // If the corner is (0,7)
         else if (row == 0 && col == 7) {
-            adjacentPositions.add(new Position(0, 6));  // משמאל לפינה
-            adjacentPositions.add(new Position(1, 7));  // למטה לפינה
-            adjacentPositions.add(new Position(1, 6));  // בזווית לפינה
+            adjacentPositions.add(new Position(0, 6));
+            adjacentPositions.add(new Position(1, 7));
+            adjacentPositions.add(new Position(1, 6));
         }
         // If the corner is (7,0)
         else if (row == 7 && col == 0) {
-            adjacentPositions.add(new Position(6, 0));  // למעלה לפינה
-            adjacentPositions.add(new Position(7, 1));  // מימין לפינה
-            adjacentPositions.add(new Position(6, 1));  // בזווית לפינה
+            adjacentPositions.add(new Position(6, 0));
+            adjacentPositions.add(new Position(7, 1));
+            adjacentPositions.add(new Position(6, 1));
         }
         // If the corner is (7,7)
         else if (row == 7 && col == 7) {
-            adjacentPositions.add(new Position(7, 6));  // משמאל לפינה
-            adjacentPositions.add(new Position(6, 7));  // למעלה לפינה
-            adjacentPositions.add(new Position(6, 6));  // בזווית לפינה
+            adjacentPositions.add(new Position(7, 6));
+            adjacentPositions.add(new Position(6, 7));
+            adjacentPositions.add(new Position(6, 6));
         }
 
         return adjacentPositions.toArray(new Position[0]);
