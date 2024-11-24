@@ -2,7 +2,7 @@ import java.util.*;
 import java.util.function.Predicate;
 
 /**
- * This class implements PlayableLogic interface, this class mange the game, here the game status changes
+ * This class implements PlayableLogic interface, this class mange the game, here the game status changes.
  */
 public class GameLogic implements PlayableLogic{
     private final int BOARD_SIZE = 8;
