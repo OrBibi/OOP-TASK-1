@@ -2,11 +2,28 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * This class represents a Greedy AI Player that choose the move that will flip the most discs
+ */
 
 public class GreedyAI extends AIPlayer{
+    /**
+     * Constructor for GreedyAI player.
+     * @param isPlayerOne Indicates whether this player is Player 1 (true) or Player 2 (false).
+     */
     public GreedyAI(boolean isPlayerOne) {
         super(isPlayerOne);
     }
+
+    /**
+     * The method takes all the position and compares them by the flips they will make,
+     * it takes the position that flips the most discs.
+     * if there are 2 or more positions with the same flips: it takes the most right column.
+     * if still there 2 or more positions with the same flips and the same column:
+     * it takes the most down row.
+     * @param gameStatus
+     * @return The greedy move
+     */
 
     public Move makeMove(PlayableLogic gameStatus) {
         // List of all the position

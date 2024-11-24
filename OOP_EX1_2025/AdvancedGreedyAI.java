@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-
+//Achieves better results when the player is player 2, on average reaches a ratio of 1:10 against the RandomAI
 public class AdvancedGreedyAI extends AIPlayer {
 
     public AdvancedGreedyAI(boolean isPlayerOne) {

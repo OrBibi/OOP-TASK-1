@@ -1,3 +1,6 @@
+/**
+ * This class represent Bomb Disc object
+ */
 public class BombDisc implements Disc{
 
     private Player _player;

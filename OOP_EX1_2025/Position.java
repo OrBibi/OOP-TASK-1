@@ -1,5 +1,5 @@
 /**
- * This class represents a position on a grid with row and column values.
+ * This class represents a position on a board with row and column values.
  */
 
 public class Position {

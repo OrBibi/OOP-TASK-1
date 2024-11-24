@@ -1,3 +1,6 @@
+/**
+ * This class represent Unflappable Disc object
+ */
 public class UnflippableDisc implements Disc{
 
     private Player _player;

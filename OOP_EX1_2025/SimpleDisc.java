@@ -1,6 +1,5 @@
 /**
- * This class represent simple dice object
- * Don't make any changes here
+ * This class represent Simple Disc object
  */
 public class SimpleDisc implements Disc{
 
