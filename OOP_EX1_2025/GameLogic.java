@@ -1,8 +1,7 @@
 import java.util.*;
-import java.util.function.Predicate;
 
 /**
- * This class implements PlayableLogic interface, this class mange the game, here the game status changes.
+ * This class implements PlayableLogic interface, this class mange the game, here the game status changes
  */
 public class GameLogic implements PlayableLogic{
     private final int BOARD_SIZE = 8;
@@ -12,7 +11,7 @@ public class GameLogic implements PlayableLogic{
     private int _player1discs, _player2discs;
 
     /**
-     * here we locate the disc on the board and change the game status:
+     * This method locate the disc on the board and change the game status:
      * we crate a deep copy of the board
      * First we check if the move(p and the disc) will make flips by "ListWillFlips" function.
      * then if the list is not empty it check if the player still have this type of disc.
@@ -167,7 +166,7 @@ public class GameLogic implements PlayableLogic{
     }
 
     /**
-     * set yhe players
+     * set the players
      * @param player1 The first player.
      * @param player2 The second player.
      */
@@ -240,7 +239,13 @@ public class GameLogic implements PlayableLogic{
     }
 
     /**
-     * Undo the last move
+     * The method undoes the last move made in the game,
+     * provided both players are human and a previous move exists in the move stack.
+     * The method identifies the last placed disc and any discs whose ownership changed during the move,
+     * restoring the board to its previous state while updating the players' score counters.
+     * If the removed disc is a special type , the relevant player attributes are updated accordingly.
+     * Finally, the method prints details of the undo operation.
+     * If no previous move is available, an appropriate message is displayed.
      */
     @Override
     public void undoLastMove() {
@@ -301,7 +306,7 @@ public class GameLogic implements PlayableLogic{
 ///////////////////////////////additional methods////////////////////////////////////////
 
     /**
-     *The function check who is the current player, 1 or 2
+     *The methods check who is the current player, 1 or 2
      * @return player 1 or 2
      */
     public Player get_currentPlayer(){
@@ -316,7 +321,7 @@ public class GameLogic implements PlayableLogic{
     }
 
     /**
-     * This function makes a deep copy of the board
+     * This methods makes a deep copy of the board
      * @param board of discs
      * @return deep copy of the board
      */
@@ -342,12 +347,14 @@ public class GameLogic implements PlayableLogic{
         }
         return ans;
     }
-    /**
-     * This function makes a deep copy of the board
-     * @param position and disc
-     * @return deep copy of the board
-     */
 
+    /**
+     * This methods Checks if placing the given disc at the specified position will result in flipping
+     * at least one other disc.
+     * @param position the position to check.
+     * @param disc the disc to place at the position.
+     * @return true if placing the disc flips one or more discs, false otherwise.
+     */
     public boolean CheckLocateDisc(Position position, Disc disc){
         Disc[][] board = this.getBoardCopy(_board);
         Move move = new Move(position,disc);
@@ -356,12 +363,18 @@ public class GameLogic implements PlayableLogic{
         return !willFlip.isEmpty();
     }
 
-
     /**
-     * This function return list of discs that will flip
+     * This methods identifies all the discs that would be flipped if a given move is played on the board.
+     * It evaluates each direction around the move's position, tracking chains of opponent discs
+     * that lead to a disc owned by the current player. Special handling is applied for "bomb" discs,
+     * triggering chain reactions that include additional affected discs. The function ensures the
+     * result contains only unique discs and excludes any unflippable discs. If the move is invalid
+     * (outside the board or on an occupied position), an empty list is returned.
      * @param move and board
      * @return list of discs
      */
+
+
     public List<Disc> listWillFlips(Move move, Disc[][] board){
         //Build list of disc that will flip after the move
         List<Disc> countFlips = new ArrayList<>();
@@ -426,8 +439,9 @@ public class GameLogic implements PlayableLogic{
         List<Disc> countFlipsWithoutDuplicates = new ArrayList<>(uniqueDiscs);
         return countFlipsWithoutDuplicates;
     }
+
     /**
-     * This function checks if a position is inside the board
+     * This methods checks if a position is inside the board
      * @param p Position
      * @return true if inside, false if not
      */
@@ -437,7 +451,7 @@ public class GameLogic implements PlayableLogic{
     }
 
     /**
-     * This function creates an array of neighbors of a disc position.
+     * This methods creates an array of neighbors of a disc position.
      * @param p Position
      * @return array of 8 neighbors.
      */
@@ -469,7 +483,7 @@ public class GameLogic implements PlayableLogic{
     }
 
     /**
-     * This function gets position and number of neighbor (0-7) and return the wanted neighbor
+     * This methods gets position and number of neighbor (0-7) and return the wanted neighbor
      * @param p position
      * @param neighbor- number of neighbor
      * @return the position of the neighbor
@@ -494,6 +508,7 @@ public class GameLogic implements PlayableLogic{
 
 
     /**
+     * This methods return type of disc by giving row and column
      * @param row int
      * @param column int
      * @return the disc in that row column position
@@ -503,6 +518,7 @@ public class GameLogic implements PlayableLogic{
     }
 
     /**
+     * This methods return type of disc by giving a position
      * @param p position
      * @return the disc in that position
      */
